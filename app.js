@@ -70,3 +70,44 @@ const crearComentario = ({ autor, proyecto, comentario }) => {
 };
 
 // ===== Envío del formulario =====
+const formulario = document.querySelector('#formFeedback');
+const inputAutor = document.querySelector('#autor');
+const selectProyecto = document.querySelector('#proyecto');
+const txtComentario = document.querySelector('#comentario');
+const contenedorComentarios = document.querySelector('#comentariosContainer');
+const msgSinComentarios = document.querySelector('#sinComentarios');
+
+const leerFormulario = () => ({
+  autor: inputAutor.value.trim(),
+  proyecto: selectProyecto.value,
+  comentario: txtComentario.value.trim(),
+});
+
+const celebrarPublicacion = (autor) => {
+  Swal.fire({
+    icon: 'success',
+    title: '¡Valoración publicada!',
+    text: `Gracias por tu aporte, ${autor}.`,
+  });
+
+  confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, zIndex: 2000 });
+};
+
+const manejarEnvio = (evento) => {
+  evento.preventDefault();
+
+  const datos = leerFormulario();
+  const errores = validarFormulario(datos);
+
+  if (errores.length > 0) {
+    mostrarErrores(errores);
+    return;
+  }
+
+  contenedorComentarios.appendChild(crearComentario(datos));
+  msgSinComentarios.hidden = true;
+  formulario.reset();
+  celebrarPublicacion(datos.autor);
+};
+
+formulario.addEventListener('submit', manejarEnvio);
