@@ -2,6 +2,14 @@
 // Autor: Joshua Lores Florez
 
 // ===== Modo claro / oscuro =====
+const btnTema = document.querySelector('#btnTheme');
+
+const alternarTema = () => {
+  const modoOscuro = document.body.classList.toggle('dark-mode');
+  btnTema.textContent = modoOscuro ? 'Modo Claro' : 'Modo Oscuro';
+};
+
+btnTema.addEventListener('click', alternarTema);
 
 // ===== Likes por tarjeta =====
 
