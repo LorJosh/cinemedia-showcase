@@ -49,5 +49,24 @@ const mostrarErrores = (errores) => {
 };
 
 // ===== Creación de nodos =====
+const crearComentario = ({ autor, proyecto, comentario }) => {
+  const tarjeta = document.createElement('article');
+  tarjeta.classList.add('comment-card');
+
+  const titulo = document.createElement('h4');
+  titulo.textContent = `${autor} sobre "${proyecto}"`;
+
+  const texto = document.createElement('p');
+  texto.textContent = comentario;
+
+  const fecha = document.createElement('small');
+  fecha.textContent = new Date().toLocaleString('es-CO');
+
+  tarjeta.appendChild(titulo);
+  tarjeta.appendChild(texto);
+  tarjeta.appendChild(fecha);
+
+  return tarjeta;
+};
 
 // ===== Envío del formulario =====
