@@ -12,6 +12,19 @@ const alternarTema = () => {
 btnTema.addEventListener('click', alternarTema);
 
 // ===== Likes por tarjeta =====
+const botonesLike = document.querySelectorAll('.btn-like');
+
+const activarLike = (boton) => {
+  const spanContador = boton.querySelector('.like-count');
+  let likes = 0;
+
+  boton.addEventListener('click', () => {
+    likes++;
+    spanContador.textContent = likes;
+  });
+};
+
+botonesLike.forEach(activarLike);
 
 // ===== Validación del formulario =====
 
